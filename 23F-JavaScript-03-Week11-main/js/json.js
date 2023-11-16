@@ -2,12 +2,18 @@
 const header = document.querySelector("header");
 const section = document.querySelector("section");
 
+const baseUrl = "https://baranyekta.github.io/23F-JavaScript-03-Week11-main/";
+
 // STEP 3a: Create the asynchronous function populate()
 async function populate() {
+    const url = baseUrl + "js/i-scream.json";
+
     // Introducing JavaScript Object Notation (JSON): https://json.org/
     // STEP 4a: Create i-scream.json file with companyName, headOffice, established, active, topFlavors(name, calories, type, ingredients, image) */
     // STEP 4b: Store the URL of a JSON file in a variable */
-    const url = "https://baranyekta.github.io/23F-JavaScript-03-Week11-main/js/i-scream.json";
+
+    //const url = "https://baranyekta.github.io/23F-JavaScript-03-Week11-main/js/i-scream.json";
+
     // STEP 5: Use the new URL to create a new request object
     const request = new Request(url);
     // STEP 6: Make a network request with the fetch() function, which returns a Response object
@@ -23,7 +29,8 @@ async function populate() {
 }
 
 // STEP 3b: Call the populate() function
-    populate();
+//    populate();
+
 /* STEP 9b: Build out the populateHeader() function */
 function populateHeader(jsonData) {
     // Create the H1 element
@@ -56,7 +63,9 @@ function showTopFlavors(jsonData) {
         h2.textContent = topFlavors[i].name;
         p1.textContent = `Calories: ${topFlavors[i].calories}`;
         p2.textContent = `Type: ${topFlavors[i].type}`;
-        image.setAttribute("src", topFlavors[i].image) // <img src="image-location">
+        //image.setAttribute("src", topFlavors[i].image) // <img src="image-location">
+        image.setAttribute("src", baseUrl + topFlavors[i].image); // Update the image URL
+
         // STEP 10g: Build a loop for the ingredients array in the JSON
         const ingredients = topFlavors[i].ingredients;
         for (let j = 0; j < ingredients.length; j++) {
@@ -65,6 +74,10 @@ function showTopFlavors(jsonData) {
             listItem.textContent = ingredients[j];
             list.appendChild(listItem); // // <ul><li></li></ul>
         }
+
+        const url = baseUrl + "js/i-scream.json";
+
+        populate();
 
         // STEP 10i: Append each complete ARTICLE element to the SECTION element
         article.appendChild(h2);
